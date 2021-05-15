@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f6076b9d-7be7-4616-b525-ceda3276c6bf" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="demoFlow" doc:id="90bfaa66-77d4-4a1c-ab0d-78d3a19ae65f" >
+		<http:listener doc:name="Listener" doc:id="c8ec7cbd-ff62-41d5-8d2d-2d2c523cd344" config-ref="HTTP_Listener_config" allowedMethods="GET" path="Mule"/>
+		<set-variable value="This is Variable A" doc:name="Set Variable" doc:id="352d8bf5-138b-4dfa-84fa-2c4d36f740bd" variableName="VarA"/>
+		<logger level="INFO" doc:name="Logger" doc:id="9558b3a0-0ea3-4c78-bb05-78b5fcdb9bd3" message="Flow Started"/>
+		<set-payload value="{Pay Load Message Printed}" doc:name="Set Payload" doc:id="48754f67-2c26-446f-aa83-8bb0f53d026f" />
+		<flow-ref doc:name="Flow Reference" doc:id="734b249a-1ef5-4807-8dc2-0615ab70f1eb" name="demoSub_Flow" />
+		<logger level="INFO" doc:name="Logger" doc:id="00c436a2-3d4b-4ff8-b750-7609ca523f4a" message="Flow Ended - #[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d4a5b12d-ec31-4543-b53c-a45209e01252" />
+	</flow>
+	<sub-flow name="demoSub_Flow" doc:id="e1796908-f8f0-4540-90df-2213dd1be112" >
+		<logger level="INFO" doc:name="Logger" doc:id="314cf377-765e-4da2-8233-276321d6a63b" message="Sub Flow print 1"/>
+		<logger level="INFO" doc:name="Logger" doc:id="30024b13-44b1-42de-920e-f547866bc699" message="Sub Flow print 2 #[vars.VarA]"/>
+	</sub-flow>
+</mule>
