@@ -35,13 +35,13 @@
 					<classifier>mule-application</classifier>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>4.3.0</muleVersion>
-						<username>vinod07</username>
-						<password>Skyworth@547</password>
-						<applicationName>demo-api</applicationName>
+						<muleVersion>${muleVersion}</muleVersion>
+						<username>${username}</username>
+						<password>${password}</password>
+						<applicationName>vanchiv-ci-cd-demo</applicationName>
 						<environment>Sandbox</environment>
-						<workerType>micro</workerType>
-						<workers>1</workers>
+						<workerType>${workerType}</workerType>
+						<workers>${workers}</workers>
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>
